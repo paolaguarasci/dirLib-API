@@ -8,6 +8,7 @@ import bodyParser from "body-parser";
 import Promise from "bluebird";
 
 import auth from "./routes/auth";
+import users from "./routes/users";
 
 const app = express();
 app.use(bodyParser.json());
@@ -19,7 +20,7 @@ mongoose.connect(process.env.DBLINK, {
 });
 
 app.use("/api/auth", auth);
-
+app.use("/api/users", users);
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
